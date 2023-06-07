@@ -2,6 +2,7 @@ import { inventory } from '/data.js'
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 
 const inventoryFeed = document.getElementById('inventory-feed')
+const cart = []
 
 
 document.addEventListener('submit',(e) => {
@@ -51,17 +52,66 @@ function pushInputsToInventory(itemInput,colorInput,sizeInput,qtyInput) {
 
 document.addEventListener('click', (e)=> {
 
+
         if(e.target.id === 'add-inventory-btn') {
             toggleInventoryForm()
         } else if(e.target.id === 'exit-form-btn') {
             toggleInventoryForm()
+        } else if(e.target.dataset.inventory) {
+            addInventoryToCart(e.target.dataset.inventory)
         }
-
 })
 
 function toggleInventoryForm() {
-    console.log('clicked')
     document.getElementById('form-container').classList.toggle('showForm')
+
+}
+
+
+function addInventoryToCart(inventoryId) {
+
+    const targetInventory = inventory.filter((product) => {
+        return product.uuid === inventoryId
+    })[0]
+
+    console.log(targetInventory)
+
+    cart.push(targetInventory)
+
+    renderCart()
+
+}
+
+
+function renderCart() {
+
+    const cartEl = document.getElementById('cart')
+
+    let innerCartHtml = ''
+    let sum = 0
+
+    cart.forEach((product) => {
+        innerCartHtml += `
+                <div class='cart-product'>
+                    <div class='cart-product-size'>
+                        <li>${product.size}</li>
+                    </div>
+                    <div class='cart-product-info'>
+                        <li>${product.color} ${product.item}</li>
+                    </div>
+                    <div class='cart-product-price'>
+                        <li>$${product.price}</li>
+                    </div>
+                </div>`
+
+        sum += product.price
+            
+            })
+
+
+    cartEl.innerHTML = innerCartHtml
+
+    document.getElementById('sum').innerText = `Total: $${sum}`
 
 }
 
@@ -74,7 +124,7 @@ function renderInventory() {
 
         innerHtml += `
         
-                <div class='inventory'>
+                <div class='inventory' data-inventory="${product.uuid}">
                     <div class='inventory-item'>
                         <p>${product.item}</p>
                     </div>

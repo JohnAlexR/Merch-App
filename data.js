@@ -55,6 +55,4 @@ export const inventory = [
     },
 
 
-
-
 ]

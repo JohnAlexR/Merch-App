@@ -13,13 +13,14 @@
         <header id="header">
             <img src="Images/menu.svg" alt="hamburger-menu">
             <h1>Merch App</h1>
-            <button class="add-inventory-btn">+</button>
+            <button class="add-inventory-btn" id="add-inventory-btn">+</button>
         </header>
         <section class="inventory-feed" id="inventory-feed">
             <!-- JS rendered inventory here -->
         </section>
-        <div class="form-container">
+        <div class="form-container" id="form-container">
             <form action="" class="add-inventory-form">
+                <button id="exit-form-btn">Back</button>
                 <div>
                     <label for="item-input">Shirt or Sticker?</label>
                     <input type="text" name="item" id="item-input">
@@ -37,7 +38,7 @@
                     <input type="text" name="qty" id="qty-input">
                 </div>
 
-                <button type="submit" class="form-btn">Submit</button>
+                <button type="submit" class="form-btn" id="inventory-form-submit">Submit</button>
             </form>
         </div>
     </main>

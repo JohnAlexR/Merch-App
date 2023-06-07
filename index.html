@@ -9,14 +9,38 @@
     <script src="script.js" type="module" defer ></script>
 </head>
 <body>
-    <header id="header">
-        <img src="Images/menu.svg" alt="hamburger-menu">
-        <h1>Merch App</h1>
-        <button class="add-inventory-btn">+</button>
-    </header>
-    <section class="inventory-feed" id="inventory-feed">
-        <!-- JS rendered inventory here -->
-    </section>
+    <main>
+        <header id="header">
+            <img src="Images/menu.svg" alt="hamburger-menu">
+            <h1>Merch App</h1>
+            <button class="add-inventory-btn">+</button>
+        </header>
+        <section class="inventory-feed" id="inventory-feed">
+            <!-- JS rendered inventory here -->
+        </section>
+        <div class="form-container">
+            <form action="" class="add-inventory-form">
+                <div>
+                    <label for="item-input">Shirt or Sticker?</label>
+                    <input type="text" name="item" id="item-input">
+                </div>
+                <div>
+                    <label for="color-input">What color?</label>
+                    <input type="text" name="color" id="color-input">
+                </div>
+                <div>
+                    <label for="size-input">What Size?</label>
+                    <input type="text" name="size" id="size-input">
+                </div>
+                <div>
+                    <label for="qty-input">How many?</label>
+                    <input type="text" name="qty" id="qty-input">
+                </div>
+
+                <button type="submit" class="form-btn">Submit</button>
+            </form>
+        </div>
+    </main>
     <footer class="footer" id="footer">
         <div class="cart" id="cart">
             <!-- JS rendered cart here -->

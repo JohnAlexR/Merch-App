@@ -3,6 +3,14 @@ body {
     margin: 0;
 }
 
+main {
+    position: relative;
+}
+
+h1 {
+    font-size: 20px;
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -24,6 +32,41 @@ header {
     align-self: center;
 }
 
+.inventory-feed {
+    display: grid;
+    padding:10px;
+    grid-template-columns: repeat(auto-fit, 75px);
+    grid-template-rows: repeat(auto-fit, 75px);
+    gap: 20px;
+    justify-content: center;
+}
+
+.inventory {
+    height: 75px;
+    width: 75px;
+    border: 1px solid black;
+    border-radius: 10px;
+    line-height: 0px;
+    position: relative;
+    padding: 5px;
+}
+
+.inventory-item {
+    position: absolute;
+    top: 0;
+}
+
+.inventory-price {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.inventory-qty {
+    position: absolute;
+    bottom: 0;
+}
+
 .footer {
     display: flex;
     justify-content: space-between;
@@ -36,4 +79,34 @@ header {
     right: 0px;
     padding: 10px;
 
+}
+
+.form-container {
+    display: none;
+    position: fixed;
+    height: 400px;
+    width: 80%;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+
+    background-color: rgb(231, 242, 231);
+    flex-direction: column;
+    border: 2px solid green;
+    border-radius: 20px;
+    padding: 30px;
+
+}
+
+.add-inventory-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+.add-inventory-form > div {
+    display: flex;
+    justify-content: space-between;
 }

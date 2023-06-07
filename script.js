@@ -1,4 +1,4 @@
-import { inventory } from '/data.js'
+import { inventory, sold } from '/data.js'
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 
 const inventoryFeed = document.getElementById('inventory-feed')
@@ -36,6 +36,7 @@ function pushInputsToInventory(itemInput,colorInput,sizeInput,qtyInput) {
         color: colorInput,
         size: sizeInput,
         qty: qtyInput,
+        qtyInCart: 0,
         price: 15,
         uuid: uuidv4(),
         discount: 0,
@@ -59,6 +60,8 @@ document.addEventListener('click', (e)=> {
             toggleInventoryForm()
         } else if(e.target.dataset.inventory) {
             addInventoryToCart(e.target.dataset.inventory)
+        } else if (e.target.id === 'confirm-order-btn') {
+            finalizeOrder()
         }
 })
 
@@ -74,11 +77,18 @@ function addInventoryToCart(inventoryId) {
         return product.uuid === inventoryId
     })[0]
 
-    console.log(targetInventory)
 
-    cart.push(targetInventory)
+    if(targetInventory.qtyInCart < targetInventory.qty){
 
-    renderCart()
+        console.log(targetInventory)
+
+        cart.push(targetInventory)
+
+        targetInventory.qtyInCart++
+
+        renderCart()
+
+    }
 
 }
 
@@ -112,6 +122,38 @@ function renderCart() {
     cartEl.innerHTML = innerCartHtml
 
     document.getElementById('sum').innerText = `Total: $${sum}`
+
+}
+
+
+function finalizeOrder() {
+
+    cart.forEach((product) => {
+
+        sold.push(product)
+
+        const inventoryItemToUpdate = inventory.filter((inventoryItem)=> {
+
+            return inventoryItem.uuid === product.uuid
+
+        })[0]
+
+        inventoryItemToUpdate.qty --
+        inventoryItemToUpdate.qtyInCart = 0
+
+    })
+
+    clearCart()
+
+    renderInventory()
+
+}
+
+function clearCart() {
+
+    cart.length = 0
+    renderCart()
+
 
 }
 

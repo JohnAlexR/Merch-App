@@ -6,6 +6,7 @@
 body {
     padding: 0;
     margin: 0;
+    text-align: center;
 }
 
 main {
@@ -29,7 +30,7 @@ header {
 
 .add-inventory-btn, .purchase-btn {
     border: none;
-    border-radius: 50px;
+    border-radius: 100px;
     background-color: whitesmoke;
     color: rgb(24, 69, 154);
     font-size: 34px;

@@ -29,7 +29,7 @@ header {
 
 .add-inventory-btn, .purchase-btn {
     border: none;
-    border-radius: 50%;
+    border-radius: 100%;
     background-color: whitesmoke;
     color: rgb(24, 69, 154);
     font-size: 34px;

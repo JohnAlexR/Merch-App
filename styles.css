@@ -42,15 +42,15 @@ header {
 .inventory-feed {
     display: grid;
     padding: 15px;
-    grid-template-columns: repeat(auto-fit, 75px);
-    grid-template-rows: repeat(auto-fit, 75px);
+    grid-template-columns: repeat(auto-fit, 100px);
+    grid-template-rows: repeat(auto-fit, 100px);
     gap: 20px;
     justify-content: center;
 }
 
 .inventory {
-    height: 75px;
-    width: 75px;
+    height: 100px;
+    width: 100px;
     border: 1px solid black;
     border-radius: 10px;
     line-height: 0px;
@@ -58,15 +58,28 @@ header {
     padding: 5px;
 }
 
-.inventory-item {
+.inventory-size {
     position: absolute;
     top: 0;
+    left: 0;
+    border-top-left-radius: 8px;
+    background-color: rgb(57, 54, 54);
+    padding: 10px;
+    color: white;
+    font-size: 28px;
+    margin: 0;
 }
 
 .inventory-price {
     position: absolute;
     top: 0;
     right: 0;
+    border-top-right-radius: 8px;
+    background-color: rgb(57, 54, 54);
+    padding: 2px;
+    color: white;
+    font-size: 12px;
+    margin: 0;
 }
 
 .inventory-qty {

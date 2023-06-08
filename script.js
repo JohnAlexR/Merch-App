@@ -194,9 +194,10 @@ function renderInventory() {
 
         innerHtml += `
         
-                <div class='inventory' data-inventory="${product.uuid}">
+                <div class='inventory' data-inventory="${product.uuid}" 
+                style='background-image: url(${product.img}); background-size: cover'>
                     <div class='inventory-item'>
-                        <p>${product.item}</p>
+                        <p class='inventory-size'>${product.size}</p>
                     </div>
                     <div class='inventory-price'>
                         <p>$${product.price}</p>

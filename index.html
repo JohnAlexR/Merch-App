@@ -11,7 +11,7 @@
 <body>
     <main>
         <header id="header">
-            <img src="Images/menu.svg" alt="hamburger-menu">
+            <img src="Images/menu.svg" alt="hamburger-menu" class="hamburger-menu">
             <h1>Merch App</h1>
             <button class="add-inventory-btn" id="add-inventory-btn">+</button>
         </header>
@@ -22,8 +22,12 @@
             <form action="" class="add-inventory-form">
                 <button type="button" id="exit-form-btn">Back</button>
                 <div>
-                    <label for="item-input">Shirt or Sticker?</label>
-                    <input type="text" name="item" id="item-input">
+                    <label for="item-input">What type of merch?</label>
+                        <select name="item" id="item-input" class="custom-select">
+                            <option value="shirt">shirt</option>
+                            <option value="sticker">sticker</option>
+                            <option value="other">other</option>
+                        </select>
                 </div>
                 <div>
                     <label for="color-input">What color?</label>
@@ -31,11 +35,21 @@
                 </div>
                 <div>
                     <label for="size-input">What Size?</label>
-                    <input type="text" name="size" id="size-input">
+                    <select name="size" id="size-input" class="custom-select">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
                 </div>
                 <div>
                     <label for="qty-input">How many?</label>
-                    <input type="text" name="qty" id="qty-input">
+                    <input type="number" name="qty" id="qty-input">
+                </div>
+                <div>
+                    <label for="price-input">Price?</label>
+                    <input type="number" name="price" id="price-input">
                 </div>
 
                 <button type="submit" class="form-btn" id="inventory-form-submit">Submit</button>

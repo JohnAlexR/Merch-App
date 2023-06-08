@@ -13,22 +13,21 @@ document.addEventListener('submit',(e) => {
     let colorInput = document.getElementById('color-input')
     let sizeInput = document.getElementById('size-input')
     let qtyInput = document.getElementById('qty-input')
+    let priceInput = document.getElementById('price-input')
 
-    pushInputsToInventory(itemInput.value,colorInput.value,sizeInput.value,qtyInput.value)
+    pushInputsToInventory(itemInput.value,colorInput.value,sizeInput.value,qtyInput.value,priceInput.value)
 
     itemInput.value = ''
     colorInput.value = ''
     sizeInput.value = ''
     qtyInput.value = ''
+    priceInput.value = ''
 
     toggleInventoryForm()
 
 })
 
-function pushInputsToInventory(itemInput,colorInput,sizeInput,qtyInput) {
-
-    //formula to determine price/discount , to replace hardcoded '15' with variable
-
+function pushInputsToInventory(itemInput,colorInput,sizeInput,qtyInput,priceInput) {
 
     let newObj = {
 
@@ -37,7 +36,7 @@ function pushInputsToInventory(itemInput,colorInput,sizeInput,qtyInput) {
         size: sizeInput,
         qty: qtyInput,
         qtyInCart: 0,
-        price: 15,
+        price: parseInt(priceInput),
         uuid: uuidv4(),
         discount: 0,
         img: '/Images/black-demo-shirt.png'
@@ -62,11 +61,40 @@ document.addEventListener('click', (e)=> {
             addInventoryToCart(e.target.dataset.inventory)
         } else if (e.target.id === 'confirm-order-btn') {
             finalizeOrder()
+        } else if (e.target.dataset.cart) {
+            removeFromCart(e.target.dataset.cart)
         }
 })
 
 function toggleInventoryForm() {
     document.getElementById('form-container').classList.toggle('showForm')
+
+}
+
+function removeFromCart(cartId) {
+
+    const targetCartObj = cart.filter((product) => {
+
+        return product.uuid === cartId
+
+    })[0]
+
+
+    const targetInventoryObj = inventory.filter((product) => {
+
+        return product.uuid === cartId
+
+    })[0]
+
+    targetInventoryObj.qtyInCart --
+
+    const index = cart.indexOf(targetCartObj)
+
+    if(index > -1) {
+        cart.splice(index, 1)
+    }
+
+    renderCart()
 
 }
 
@@ -102,7 +130,7 @@ function renderCart() {
 
     cart.forEach((product) => {
         innerCartHtml += `
-                <div class='cart-product'>
+                <div class='cart-product' id="cart-product" data-cart="${product.uuid}">
                     <div class='cart-product-size'>
                         <li>${product.size}</li>
                     </div>

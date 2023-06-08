@@ -25,7 +25,6 @@ header {
     border-bottom: 2px solid black;
     background-color: rgb(24, 69, 154);
     padding: 10px;
-    flex: none;
 }
 
 .add-inventory-btn, .purchase-btn {
@@ -39,6 +38,7 @@ header {
     align-self: center;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    flex: none;
 }
 
 .hamburger-menu {

@@ -42,6 +42,10 @@ header {
     flex: none;
 }
 
+.add-inventory-btn {
+    font-weight: 600;
+}
+
 .hamburger-menu {
     height: 50px;
     align-self: center;

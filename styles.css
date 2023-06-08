@@ -25,6 +25,7 @@ header {
     border-bottom: 2px solid black;
     background-color: rgb(24, 69, 154);
     padding: 10px;
+    flex: none;
 }
 
 .add-inventory-btn, .purchase-btn {

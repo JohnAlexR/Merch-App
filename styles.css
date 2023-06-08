@@ -40,6 +40,7 @@ header {
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     flex: none;
+    -webkit-appearance: none;
 }
 
 .hamburger-menu {

@@ -29,11 +29,28 @@ document.addEventListener('submit',(e) => {
 
 function pushInputsToInventory(itemInput,colorInput,sizeInput,qtyInput,priceInput) {
 
+    const existingItem = inventory.filter((product)=>{
+
+        if(product.item === itemInput && product.color === colorInput && product.size === sizeInput) {
+            return true
+        }
+
+    })
+
+
+    if(existingItem.length > 0) {
+
+        existingItem[0].qty += parseInt(qtyInput)
+
+        renderInventory()
+
+    } else {
+
     let newObj = {
 
-        item: itemInput,
-        color: colorInput,
-        size: sizeInput,
+        item: itemInput.toLowerCase(),
+        color: colorInput.toLowerCase(),
+        size: sizeInput.toUpperCase(),
         qty: qtyInput,
         qtyInCart: 0,
         price: parseInt(priceInput),
@@ -45,6 +62,7 @@ function pushInputsToInventory(itemInput,colorInput,sizeInput,qtyInput,priceInpu
     inventory.push(newObj)
 
     renderInventory()
+}
 
 }
 
@@ -63,12 +81,38 @@ document.addEventListener('click', (e)=> {
             finalizeOrder()
         } else if (e.target.dataset.cart) {
             removeFromCart(e.target.dataset.cart)
+        } else if (e.target.id === 'hamburger-menu') {
+            toggleDataPage()
+        } else if (e.target.id === 'close-data') {
+            toggleDataPage()
         }
 })
 
 function toggleInventoryForm() {
-    document.getElementById('form-container').classList.toggle('showForm')
+    document.getElementById('form-container').classList.toggle('show')
 
+}
+
+function toggleDataPage() {
+    console.log('clicked')
+    document.getElementById('data-container').classList.toggle('show')
+    renderData()
+}
+
+function renderData() {
+
+    let totalProductsSold = 0
+    let totalRevenueGenerated = 0
+
+    sold.forEach((product)=> {
+
+        totalProductsSold++
+        totalRevenueGenerated += parseInt(product.price)
+
+    })
+
+    document.getElementById('products-sold').innerText = `Total Products Sold: ${totalProductsSold}`
+    document.getElementById('revenue-generated').innerText = `Total Revenue Generated: $${totalRevenueGenerated}`
 }
 
 function removeFromCart(cartId) {
@@ -132,13 +176,13 @@ function renderCart() {
         innerCartHtml += `
                 <div class='cart-product' id="cart-product" data-cart="${product.uuid}">
                     <div class='cart-product-size'>
-                        <li>${product.size}</li>
+                        <li>${product.size} -</li>
                     </div>
                     <div class='cart-product-info'>
                         <li>${product.color} ${product.item}</li>
                     </div>
                     <div class='cart-product-price'>
-                        <li>$${product.price}</li>
+                        <li>- $${product.price}</li>
                     </div>
                 </div>`
 

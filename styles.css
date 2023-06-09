@@ -122,7 +122,6 @@ header {
     justify-content: space-between;
     background-color: rgb(24, 69, 154);
     height: fit-content;
-    max-height: 20vh;
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     align-self: flex-end;

@@ -106,8 +106,8 @@ function renderData() {
 
     sold.forEach((product)=> {
 
-        totalProductsSold++
-        totalRevenueGenerated += parseInt(product.price)
+        totalProductsSold += product.qty
+        totalRevenueGenerated += parseInt(product.price)*parseInt(product.qty)
 
     })
 
@@ -130,13 +130,16 @@ function removeFromCart(cartId) {
 
     })[0]
 
-    targetInventoryObj.qtyInCart --
+    if(targetCartObj.qtyInCart > 1) {
+        targetInventoryObj.qtyInCart --
+    } else {
 
-    const index = cart.indexOf(targetCartObj)
+        targetInventoryObj.qtyInCart --
+        const index = cart.indexOf(targetCartObj)
 
     if(index > -1) {
         cart.splice(index, 1)
-    }
+    }}
 
     renderCart()
 
@@ -145,6 +148,7 @@ function removeFromCart(cartId) {
 
 function addInventoryToCart(inventoryId) {
 
+
     const targetInventory = inventory.filter((product) => {
         return product.uuid === inventoryId
     })[0]
@@ -152,41 +156,50 @@ function addInventoryToCart(inventoryId) {
 
     if(targetInventory.qtyInCart < targetInventory.qty){
 
-        console.log(targetInventory)
-
         cart.push(targetInventory)
 
         targetInventory.qtyInCart++
 
-        renderCart()
+        renderCart(targetInventory.qtyInCart)
 
     }
 
 }
 
 
-function renderCart() {
+function renderCart(qtyInCart) {
+
+    console.log(qtyInCart)
 
     const cartEl = document.getElementById('cart')
+
+    if(qtyInCart > 1) {
+        cart.pop()
+    }
 
     let innerCartHtml = ''
     let sum = 0
 
     cart.forEach((product) => {
+
+        
         innerCartHtml += `
                 <div class='cart-product' id="cart-product" data-cart="${product.uuid}">
-                    <div class='cart-product-size'>
-                        <li>${product.size} -</li>
+                    <div class='cart-product-size' data-cart="${product.uuid}">
+                        <li data-cart="${product.uuid}">${product.size} -</li>
                     </div>
-                    <div class='cart-product-info'>
-                        <li>${product.color} ${product.item}</li>
+                    <div class='cart-product-info' data-cart="${product.uuid}">
+                        <li data-cart="${product.uuid}">${product.color} ${product.item}</li>
                     </div>
-                    <div class='cart-product-price'>
-                        <li>- $${product.price}</li>
+                    <div class='cart-product-price' data-cart="${product.uuid}">
+                        <li data-cart="${product.uuid}">- $${product.price}</li>
+                    </div>
+                    <div data-cart="${product.uuid}">
+                        <li data-cart="${product.uuid}">x${product.qtyInCart}</li>
                     </div>
                 </div>`
 
-        sum += product.price
+        sum += product.price*product.qtyInCart
             
             })
 
@@ -195,12 +208,19 @@ function renderCart() {
 
     document.getElementById('sum').innerText = `Total: $${sum}`
 
+    console.log(cart)
+
 }
 
 
 function finalizeOrder() {
 
     cart.forEach((product) => {
+
+        const date = new Date()
+        product.timeStamp = date.toLocaleDateString()
+        product.qty = product.qtyInCart + 1
+        product.qtyInCart = 'n/a'
 
         sold.push(product)
 
@@ -214,6 +234,8 @@ function finalizeOrder() {
         inventoryItemToUpdate.qtyInCart = 0
 
     })
+
+    console.log(sold)
 
     clearCart()
 
@@ -240,14 +262,14 @@ function renderInventory() {
         
                 <div class='inventory' data-inventory="${product.uuid}" 
                 style='background-image: url(${product.img}); background-size: cover'>
-                    <div class='inventory-item'>
-                        <p class='inventory-size'>${product.size}</p>
+                    <div class='inventory-item' data-inventory="${product.uuid}">
+                        <p class='inventory-size' data-inventory="${product.uuid}">${product.size}</p>
                     </div>
-                    <div class='inventory-price'>
-                        <p>$${product.price}</p>
+                    <div class='inventory-price' data-inventory="${product.uuid}">
+                        <p data-inventory="${product.uuid}">$${product.price}</p>
                     </div>
-                    <div class='inventory-qty'>
-                        <p>qty: ${product.qty}</p>
+                    <div class='inventory-qty' data-inventory="${product.uuid}">
+                        <p data-inventory="${product.uuid}">qty: ${product.qty}</p>
                     </div>
                 </div>
              `

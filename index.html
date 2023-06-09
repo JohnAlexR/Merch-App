@@ -7,6 +7,10 @@
     <title>Merch App</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" type="module" defer ></script>
+    <!-- Google fonts-->
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <main>
@@ -18,11 +22,21 @@
         <section class="inventory-feed" id="inventory-feed">
             <!-- JS rendered inventory here -->
         </section>
+        <footer class="footer" id="footer">
+            <div class="cart" id="cart">
+                <!-- JS rendered cart here -->
+            </div>
+            <div class="sum" id="sum">
+    
+            </div>
+            <p class="purchase-btn" id="confirm-order-btn">✓</p>
+    
+        </footer>
         <div class="form-container" id="form-container">
             <form action="" class="add-inventory-form">
                 <button type="button" id="exit-form-btn">Back</button>
                 <div>
-                    <label for="item-input">What type of merch?</label>
+                    <label for="item-input">Type?</label>
                         <select name="item" id="item-input" class="custom-select">
                             <option value="shirt">shirt</option>
                             <option value="sticker">sticker</option>
@@ -30,11 +44,17 @@
                         </select>
                 </div>
                 <div>
-                    <label for="color-input">What color?</label>
-                    <input type="text" name="color" id="color-input">
+                    <label for="color-input">Color?</label>
+                    <select name="size" id="color-input" class="custom-select">
+                        <option value="black">black</option>
+                        <option value="blue">blue</option>
+                        <option value="teal">teal</option>
+                        <option value="pink">pink</option>
+                        <option value="na">n/a</option>
+                    </select>
                 </div>
                 <div>
-                    <label for="size-input">What Size?</label>
+                    <label for="size-input">Size?</label>
                     <select name="size" id="size-input" class="custom-select">
                         <option value="S">S</option>
                         <option value="M">M</option>
@@ -44,7 +64,7 @@
                     </select>
                 </div>
                 <div>
-                    <label for="qty-input">How many?</label>
+                    <label for="qty-input">Quantity?</label>
                     <input type="number" name="qty" id="qty-input">
                 </div>
                 <div>
@@ -56,16 +76,6 @@
             </form>
         </div>
     </main>
-    <footer class="footer" id="footer">
-        <div class="cart" id="cart">
-            <!-- JS rendered cart here -->
-        </div>
-        <div class="sum" id="sum">
-
-        </div>
-        <p class="purchase-btn" id="confirm-order-btn">✓</p>
-
-    </footer>
     <div class="data-container" id="data-container">
         <button class="close-data" id="close-data">close</button>
         <p id="products-sold">Total Products Sold: </p>

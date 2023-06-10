@@ -16,7 +16,10 @@
     <main>
         <header id="header">
             <img src="Images/menu.svg" alt="hamburger-menu" class="hamburger-menu" id="hamburger-menu">
-            <h1>Merch App</h1>
+            <div>
+                <h1>Merch App</h1>
+                <p class="editing-status-el" id="editing-status-el"></p>
+            </div>
             <p class="add-inventory-btn" id="add-inventory-btn">+</p>
         </header>
         <section class="inventory-feed" id="inventory-feed">
@@ -81,6 +84,22 @@
         <p id="products-sold">Total Products Sold: </p>
         <p id="revenue-generated">Total Revenue Generated: </p>
     </div>
+    <div class="edit-inventory-container" id="edit-inventory-container">
+        <button class="close-edit-inventory" id="close-edit-inventory">close</button>
+            <div id="selected-edit-el">
+                <!--Render selected element here-->
+            </div>
+            <div>
+                <label for="edit-qty">qty</label>
+                <input type="number" id="edit-qty">
+            </div>
+            <div>
+                <label for="edit-price">price</label>
+                <input type="number" id="edit-price">
+            </div>
+        <button class="save-edit-inventory" id="save-edit-inventory">save</button>
+    </div>
+    <img src="/Images/pencil-box.svg" alt="edit" class="edit" id="edit-icon">
     
 </body>
 </html>

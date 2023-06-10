@@ -1,9 +1,28 @@
 import { inventory, sold } from '/data.js'
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 
+
+document.addEventListener('contextmenu', event => event.preventDefault());
 const inventoryFeed = document.getElementById('inventory-feed')
 const cart = []
+const editIcon = document.getElementById('edit-icon')
+let isEditModeOn = false
+let editingStatusEl = document.getElementById('editing-status-el')
 
+editIcon.addEventListener('click', ()=> {
+    isEditModeOn = !isEditModeOn
+    const inventoryItems = document.querySelectorAll('.inventory')
+    inventoryItems.forEach((item)=>{
+        item.classList.toggle('highlight')
+    })
+    editIcon.classList.toggle('icon-select')
+    if(isEditModeOn) {
+        editingStatusEl.innerText = "Editing Is On, Click An Item To Edit"
+    } else {
+        editingStatusEl.innerHTML = ''
+    }
+
+})
 
 document.addEventListener('submit',(e) => {
 
@@ -68,7 +87,7 @@ function pushInputsToInventory(itemInput,colorInput,sizeInput,qtyInput,priceInpu
 
 // event listener for all button clicks
 
-document.addEventListener('click', (e)=> {
+document.addEventListener('mousedown', (e)=> {
 
 
         if(e.target.id === 'add-inventory-btn') {
@@ -76,7 +95,16 @@ document.addEventListener('click', (e)=> {
         } else if(e.target.id === 'exit-form-btn') {
             toggleInventoryForm()
         } else if(e.target.dataset.inventory) {
+            
+            if(isEditModeOn) {
+
+            editInventory(e.target.dataset.inventory, e.target.id, e.target)
+
+
+            } else {
             addInventoryToCart(e.target.dataset.inventory)
+            }
+
         } else if (e.target.id === 'confirm-order-btn') {
             finalizeOrder()
         } else if (e.target.dataset.cart) {
@@ -85,7 +113,9 @@ document.addEventListener('click', (e)=> {
             toggleDataPage()
         } else if (e.target.id === 'close-data') {
             toggleDataPage()
-        }
+        } else if(e.target.id === 'close-edit-inventory') {
+            toggleEditInventory()
+        } 
 })
 
 function toggleInventoryForm() {
@@ -93,8 +123,42 @@ function toggleInventoryForm() {
 
 }
 
+function editInventory(inventoryId, itemName) {
+    document.getElementById('selected-edit-el').innerText = `Editing: ${itemName}`
+    toggleEditInventory()
+
+    document.getElementById('save-edit-inventory').addEventListener('click', ()=> {
+
+        let editQty = parseInt(document.getElementById('edit-qty').value)
+        let editPrice = parseInt(document.getElementById('edit-price').value)
+
+        const targetInventory = inventory.filter((product)=> {
+
+            return product.uuid === inventoryId
+
+        })[0]
+
+        console.log(targetInventory)
+
+
+        targetInventory.qty = editQty
+        targetInventory.price = editPrice
+        toggleEditInventory()
+        renderInventory()
+
+    })
+
+
+}
+
+
+function toggleEditInventory() {
+    document.getElementById('edit-inventory-container').classList.toggle('show')
+
+}
+
+
 function toggleDataPage() {
-    console.log('clicked')
     document.getElementById('data-container').classList.toggle('show')
     renderData()
 }
@@ -258,9 +322,11 @@ function renderInventory() {
 
     inventory.forEach((product) => {
 
+        let id = ` ${product.size} ${product.color} ${product.item}`
+
         innerHtml += `
         
-                <div class='inventory' data-inventory="${product.uuid}" 
+                <div class='inventory' data-inventory="${product.uuid}" id="${id}" 
                 style='background-image: url(${product.img}); background-size: cover'>
                     <div class='inventory-item' data-inventory="${product.uuid}">
                         <p class='inventory-size' data-inventory="${product.uuid}">${product.size}</p>

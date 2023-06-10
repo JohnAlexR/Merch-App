@@ -1,0 +1,12 @@
+{
+    "name": "6FB Merch",
+    "short_name": "6FB Merch",
+    "icons":
+        [
+            {"src":"/Images/6fb-logo.png","sizes":"192x192","type":"image/png"},
+            {"src":"/Images/6fb-logo.png","sizes":"512x512","type":"image/png"}
+        ],
+    "theme_color": "#EEF0F4",
+    "background_color": "#EEF0F4",
+    "display": "standalone"
+}

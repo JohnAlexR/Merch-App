@@ -289,21 +289,7 @@ label {
     line-height: 0;
 }
 
-
-@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
-    .foo {                           
-        height: 1024px;                         
-    }                       
-}   
-                                                                 
-@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {                         
-    .foo {                           
-        height: 768px;                         
-    }                       
-}
-                                               
-@media screen and (device-aspect-ratio: 40/71) {                              
-    .foo {                           
-        height: 500px;                         
-    }                       
-}
+body {
+    height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+    height: calc(var(--vh, 1vh) * 100);
+  }

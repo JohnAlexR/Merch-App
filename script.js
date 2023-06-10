@@ -9,6 +9,12 @@ const editIcon = document.getElementById('edit-icon')
 let isEditModeOn = false
 let editingStatusEl = document.getElementById('editing-status-el')
 
+window.addEventListener('resize', () => {
+
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  });
+
 editIcon.addEventListener('click', ()=> {
     isEditModeOn = !isEditModeOn
     const inventoryItems = document.querySelectorAll('.inventory')

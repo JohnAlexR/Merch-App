@@ -9,12 +9,6 @@ const editIcon = document.getElementById('edit-icon')
 let isEditModeOn = false
 let editingStatusEl = document.getElementById('editing-status-el')
 
-window.onresize = function() {
-    document.body.height = window.innerHeight;
-}
-window.onresize()
-
-
 editIcon.addEventListener('click', ()=> {
     isEditModeOn = !isEditModeOn
     const inventoryItems = document.querySelectorAll('.inventory')

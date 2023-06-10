@@ -249,8 +249,8 @@ label {
 
 .edit {
     height: 40px;
-    position: fixed;
-    bottom: 130px;
+    position: absolute;
+    top: 105px;
     right: 5px;
 }
 

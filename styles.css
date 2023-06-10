@@ -28,7 +28,7 @@ header {
     justify-content: space-between;
     height: 10vh;
     text-align: center;
-    background-color: rgb(24, 69, 154);
+    background-color: #18459A;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     justify-self: flex-start;
@@ -38,7 +38,7 @@ header {
     border: none;
     border-radius: 100px;
     background-color: whitesmoke;
-    color: rgb(24, 69, 154);
+    color: #18459A;
     font-size: 34px;
     height: 40px;
     width: 40px;
@@ -120,7 +120,7 @@ header {
 .footer {
     display: flex;
     justify-content: space-between;
-    background-color: rgb(24, 69, 154);
+    background-color: #18459A;
     height: fit-content;
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -146,7 +146,7 @@ header {
 
     background-color:  rgb(208, 214, 225);
     flex-direction: column;
-    border: 2px solid rgb(24, 69, 154);
+    border: 2px solid #18459A;
     border-radius: 20px;
     padding: 30px;
 
@@ -165,7 +165,7 @@ header {
 
     background-color:  rgb(208, 214, 225);
     flex-direction: column;
-    border: 2px solid rgb(24, 69, 154);
+    border: 2px solid #18459A;
     border-radius: 20px;
     padding: 30px;
 }
@@ -230,7 +230,7 @@ form > button, .close-data, .close-edit-inventory, .save-edit-inventory {
     border-radius: 20px;
     padding: 10px 20px;
     font-size: 20px;
-    background-color: rgb(24, 69, 154);
+    background-color: #18459A;
     border: none;
     color: whitesmoke;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
